@@ -29,7 +29,7 @@ export const getAllProducts = async (req, res) => {
 }
 
 //OBTENER PRODUCTO POR ID
-export const getProdcutById = async(res,res) => {
+export const getProductById = async(req,res) => {
 
     try{
 
@@ -56,7 +56,7 @@ export const getProdcutById = async(res,res) => {
 }
 
 //CREAR PRODUCTO
-export const createProduct = async(res,res) => {
+export const createProduct = async(req,res) => {
 
     try{
 
