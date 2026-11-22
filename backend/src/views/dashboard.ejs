@@ -1,9 +1,7 @@
 <%- include("partials/head", { title: "Panel" }) %>
-<body>
-    <main class="panel">
-        <h1>Panel de administracion</h1>
-        <p>Bienvenido, <%= user.name %></p>
-        <a href="/logout">Cerrar sesion</a>
-    </main>
-</body>
-</html>
+<%- include("partials/header") %>
+
+    <h1>Panel de administracion</h1>
+    <p>Bienvenido, <%= user.name %></p>
+
+<%- include("partials/footer") %>
