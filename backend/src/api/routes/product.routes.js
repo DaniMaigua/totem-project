@@ -3,7 +3,7 @@
 //router es otro paquete de express
 
 import { Router } from "express"; // Router funciona como una "mini aplicacion de express"
-import { validateId, validateProduct } from "../middlewares/middlewares.js";
+import { validateId, validateProduct } from "../middlewares/validations.js";
 import { createProduct, getAllProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
 
 const router = Router(); 
@@ -15,9 +15,6 @@ router.get("/", getAllProducts);
 router.get("/:id", validateId, getProductById);
 
 //POST create new product
-router.post("/", validateProduct, createProduct);
-
-//PUT create new product
 router.post("/", validateProduct, createProduct);
 
 //PUT product
