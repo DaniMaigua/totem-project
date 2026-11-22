@@ -1,6 +1,6 @@
 <%- include("partials/head", { title: "Login" }) %>
 <body class="login-page">
-    <main class="login-box">
+    <main class="form-box">
         <img src="/img/logo-mono.png" alt="Anteiku" class="login-logo">
         <h1>Anteiku</h1>
         <p class="login-sub">Panel de administracion</p>
@@ -10,7 +10,7 @@
             <p class="error"><%= error %></p>
         <% } %>
 
-        <form method="POST" action="/login" class="login-form">
+        <form method="POST" action="/login" class="form">
             <label>Email
                 <input type="email" name="email" required>
             </label>
