@@ -1,0 +1,24 @@
+<%- include("partials/head", { title: "Login" }) %>
+<body class="login-page">
+    <main class="login-box">
+        <img src="/img/logo-mono.png" alt="Anteiku" class="login-logo">
+        <h1>Anteiku</h1>
+        <p class="login-sub">Juan Cruz Reynoso - Daniela Maigua</p>
+        <p class="login-sub">Panel de administracion</p>
+
+        <% if (typeof error !== "undefined" && error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <form method="POST" action="/login" class="login-form">
+            <label>Email
+                <input type="email" name="email" required>
+            </label>
+            <label>Contraseña
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit">Ingresar</button>
+        </form>
+    </main>
+</body>
+</html>
