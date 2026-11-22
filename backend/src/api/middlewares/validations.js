@@ -1,7 +1,7 @@
 const categoriasValidas = ["coffee", "merch"];
 
 // Middleware de ruta para filtrar ids no validos
-const validateId = (req, res, next) => {
+export const validateId = (req, res, next) => {
     const id = Number(req.params.id); // Convierto a numero el valor pasado en el parametro
 
     // Si el numero no es un entero o es  <= 0
