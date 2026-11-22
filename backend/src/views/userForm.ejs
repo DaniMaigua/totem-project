@@ -1,0 +1,29 @@
+<%- include("partials/head", { title: "Alta usuario" }) %>
+<%- include("partials/header") %>
+
+    <div class="form-box">
+        <h1>Alta de usuario</h1>
+
+        <% if (typeof error !== "undefined" && error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <% if (typeof success !== "undefined" && success) { %>
+            <p class="success"><%= success %></p>
+        <% } %>
+
+        <form method="POST" action="/usuarios/alta" class="form">
+            <label>Nombre
+                <input type="text" name="name" required>
+            </label>
+            <label>Email
+                <input type="email" name="email" required>
+            </label>
+            <label>Contrasena
+                <input type="password" name="password" required>
+            </label>
+            <button type="submit">Crear usuario</button>
+        </form>
+    </div>
+
+<%- include("partials/footer") %>
