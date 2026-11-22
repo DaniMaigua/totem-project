@@ -1,0 +1,101 @@
+/* Paleta de Anteiku: blanco y negro con acento rojo */
+:root {
+    --bg: #ffffff;
+    --card: #ffffff;
+    --text: #0a0a0a;
+    --text-soft: #737373;
+    --border: #e5e5e5;
+    --brand: #b91c1c;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* Login */
+
+.login-page {
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+}
+
+.login-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 360px;
+    padding: 32px;
+    text-align: center;
+}
+
+.login-logo {
+    height: 64px;
+}
+
+.login-sub {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.error {
+    color: var(--brand);
+    font-size: 0.85rem;
+    margin-top: 12px;
+}
+
+/* Campos y botones */
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+}
+
+input {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px;
+    font: inherit;
+}
+
+button {
+    background: var(--brand);
+    border: none;
+    color: #ffffff;
+    padding: 11px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    filter: brightness(0.9);
+}
+
+/* Panel */
+
+.panel {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
