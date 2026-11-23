@@ -1,0 +1,70 @@
+<%- include("partials/head", { title: titulo }) %>
+<%- include("partials/header") %>
+
+    <div class="form-box">
+        <h1><%= titulo %></h1>
+
+        <% if (typeof error !== "undefined" && error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <% if (typeof success !== "undefined" && success) { %>
+            <p class="success"><%= success %></p>
+        <% } %>
+
+        <form method="POST" action="<%= accion %>" class="form">
+
+            <% if (producto.id) { %>
+                <input type="hidden" name="id" value="<%= producto.id %>">
+            <% } %>
+
+            <label>Nombre
+                <input type="text" name="name" 
+                value="<%= producto.name %>" 
+                required>
+            </label>
+
+            <label>Imagen
+                <input type="text" name="image" list="imagenes"
+                    value="<%= producto.image %>" placeholder="/uploads/products/...">
+                <datalist id="imagenes">
+                    <option value="/uploads/products/anteiku-cup.jpg"></option>
+                    <option value="/uploads/products/anteiku-mug.jpg"></option>
+                    <option value="/uploads/products/burboun.jpg"></option>
+                    <option value="/uploads/products/italian.jpg"></option>
+                    <option value="/uploads/products/deathnote-cuaderno.png"></option>
+                    <option value="/uploads/products/totoro-cuaderno.png"></option>
+                    <option value="/uploads/products/gashbell-perversito-remera.png"></option>
+                    <option value="/uploads/products/hisoka-almendra-remera.png"></option>
+                    <option value="/uploads/products/mrpopo-igor-remera.png"></option>
+                    <option value="/uploads/products/whitepony-chomba.png"></option>
+                </datalist>
+            </label>
+
+            <label>Categoria
+                <select name="category" required>
+                    <option value="coffee" <%= producto.category === "coffee" ? "selected" : "" %>>Cafe</option>
+                    <option value="merch" <%= producto.category === "merch" ? "selected" : "" %>>Merchandising</option>
+                </select>
+            </label>
+
+
+            <label>Precio
+                <input type="number" name="price" step="0.01" min="1"
+                    value="<%= producto.price %>" required>
+            </label>
+
+            <% if (producto.id) { %>
+                <label>Estado
+                    <select name="active">
+                        <option value="1" <%= Number(producto.active) ? "selected" : "" %>>Activo</option>
+                        <option value="0" <%= Number(producto.active) ? "" : "selected" %>>Inactivo</option>
+                    </select>
+                </label>
+            <% } %>
+
+            <button type="submit"><%= producto.id ? "Guardar cambios" : "Crear producto" %></button>
+        </form>
+    </div>
+
+<%- include("partials/footer") %>
