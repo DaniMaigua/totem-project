@@ -50,9 +50,9 @@ app.use("/api/users", userRoutes);
 app.use("/", authRoutes);
 app.use("/", viewRoutes);
 
-// app.get("/", (req, res) => {
-//     res.redirect("/login");
-// });
+app.get("/", (req, res) => {
+    res.redirect("/login");
+});
 
 app.listen(port, () => {
     console.log(`Anteiku backend corriendo en http://localhost:${port}`);
