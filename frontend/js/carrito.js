@@ -1,0 +1,95 @@
+// Pantalla de carrito: lee el localStorage que escribe cart.js
+
+const nombre = localStorage.getItem("anteiku_name");
+
+if (!nombre) {
+    window.location.href = "index.html";
+}
+
+const lista = document.getElementById("cartList");
+const total = document.getElementById("cartTotal");
+const btnFinalizar = document.getElementById("checkoutBtn");
+
+function render() {
+    const carrito = getCarrito();
+
+    lista.innerHTML = "";
+
+    if (carrito.length === 0) {
+        lista.innerHTML = "<p class='empty'>Tu carrito esta vacio.</p>";
+        total.textContent = "$ 0.00";
+        btnFinalizar.disabled = true;
+        return;
+    }
+
+    btnFinalizar.disabled = false;
+
+    let suma = 0;
+
+    carrito.forEach(item => {
+        const subtotal = item.price * item.cantidad;
+        suma += subtotal;
+
+        const fila = document.createElement("article");
+        fila.className = "cart-row";
+
+        fila.innerHTML = `
+            <img src="${imageUrl(item.image)}" alt="${item.name}">
+            <div class="cart-info">
+                <h3>${item.name}</h3>
+                <p class="price">$ ${item.price} cada uno</p>
+            </div>
+            <div class="qty">
+                <button type="button" class="qty-btn" data-menos>-</button>
+                <span>${item.cantidad}</span>
+                <button type="button" class="qty-btn" data-mas>+</button>
+            </div>
+            <p class="subtotal">$ ${subtotal.toFixed(2)}</p>
+            <button type="button" class="qty-btn" data-quitar>Quitar</button>
+        `;
+
+        // cada boton trabaja sobre el id del item, no sobre la fila
+        const menos = fila.querySelector("[data-menos]");
+        const mas = fila.querySelector("[data-mas]");
+        const quitar = fila.querySelector("[data-quitar]");
+
+        menos.addEventListener("click", () => setCantidad(item.id, item.cantidad - 1));
+        mas.addEventListener("click", () => setCantidad(item.id, item.cantidad + 1));
+        quitar.addEventListener("click", () => setCantidad(item.id, 0));
+
+        lista.appendChild(fila);
+    });
+
+    total.textContent = `$ ${suma.toFixed(2)}`;
+}
+
+// Unica funcion que escribe el carrito en esta pantalla.
+// Reusa getCarrito y saveCarrito de cart.js para no duplicar el formato.
+function setCantidad(id, cantidad) {
+    let carrito = getCarrito();
+
+    if (cantidad < 1) {
+        carrito = carrito.filter(item => item.id !== id);
+    } else {
+        carrito.forEach(item => {
+            if (item.id === id) {
+                item.cantidad = cantidad;
+            }
+        });
+    }
+
+    saveCarrito(carrito);
+    updateBadge();
+    render();
+}
+
+btnFinalizar.addEventListener("click", () => {
+    if (getCarrito().length === 0) {
+        return;
+    }
+
+    window.location.href = "ticket.html";
+});
+
+updateBadge();
+render();
