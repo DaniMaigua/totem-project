@@ -18,7 +18,7 @@ router.get("/usuarios/alta", requireLogin, showUserForm);
 
 ////////////////////////
 // GET alta de productos
-router.post("/productos/alta", requireLogin, showProductForm);
+router.get("/productos/alta", requireLogin, showProductForm);
 
 // Exportamos las rutas de vistas
 export default router;
