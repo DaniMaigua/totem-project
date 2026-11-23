@@ -47,6 +47,40 @@ export const showProductForm = (req, res) => {
 }
 
 /////////////////////////////
+// Consulta de producto por id
+// El id llega por query string porque el form es un GET nativo
+export const showProductDetail = async (req, res) => {
+
+    const id = Number(req.query.id);
+    const buscado = Number.isInteger(id) && id > 0 ? id : "";
+
+    if (!buscado) {
+        return res.render("productDetail", {
+            buscado: "",
+            producto: null
+        });
+    }
+
+    try {
+        const [rows] = await ProductModels.selectProductById(buscado);
+
+        res.render("productDetail", {
+            buscado: buscado,
+            producto: rows.length > 0 ? rows[0] : null,
+            error: rows.length > 0 ? "" : `No se encontro producto con id ${buscado}`
+        });
+    } catch (error) {
+        console.log("Error consultando el producto: ", error);
+
+        res.render("productDetail", {
+            buscado: buscado,
+            producto: null,
+            error: "Error interno al consultar el producto"
+        });
+    }
+}
+
+/////////////////////////////
 // Modificar producto: buscamos el producto y mostramos el mismo form cargado
 export const showProductUpdate = async (req, res) => {
 

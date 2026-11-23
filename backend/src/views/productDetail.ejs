@@ -1,0 +1,46 @@
+<%- include("partials/head", { title: "Consulta" }) %>
+<%- include("partials/header") %>
+
+    <div class="form-box">
+        <h1>Consulta de producto</h1>
+
+        <!-- Form GET: el navegador arma el query string, no hace falta js -->
+        <form class="form" method="GET" action="/productos/consulta">
+            <label>Id del producto
+                <input type="number" name="id" min="1" value="<%= buscado %>" required>
+            </label>
+            <button type="submit">Consultar</button>
+        </form>
+        <% if (typeof error !== "undefined" && error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <% if (producto) { %>
+            <img class="detail-img" src="<%= producto.image %>" alt="<%= producto.name %>">
+            <p class="data"><strong>Nombre:</strong> <%= producto.name %></p>
+            <p class="data"><strong>Categoria:</strong> <%= producto.category %></p>
+            <p class="data"><strong>Precio:</strong> $ <%= producto.price %></p>
+            <p class="data">
+                <strong>Estado:</strong>
+                <span class="chip <%= producto.active ? "on" : "" %>">
+                    <%= producto.active ? "Activo" : "Inactivo" %>
+                </span>
+            </p>
+
+            <div class="actions">
+                <a class="chip" href="/productos/modificar/<%= producto.id %>">Editar</a>
+                <button type="button" class="chip" data-eliminar="<%= producto.id %>">Eliminar</button>
+                <a class="chip" href="/dashboard">Volver</a>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="modal" id="modal">
+        <p id="modal-texto"></p>
+        <button type="button" class="chip" id="modal-cancelar">Cancelar</button>
+        <button type="button" class="chip" id="modal-ok">Confirmar</button>
+    </div>
+
+    <script src="/js/panel.js"></script>
+
+<%- include("partials/footer") %>

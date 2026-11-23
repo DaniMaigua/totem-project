@@ -31,6 +31,7 @@
                         </span>
                     </td>
                     <td class="actions">
+                        <a class="chip" href="/productos/consulta?id=<%= producto.id %>">Detalle</a>
                         <a class="chip" href="/productos/modificar/<%= producto.id %>">Editar</a>
                         <!-- El fetch de panel.js pide confirmacion antes de borrar -->
                         <button type="button" class="chip" data-eliminar="<%= producto.id %>">Eliminar</button>
@@ -39,6 +40,12 @@
             <% }) %>
         </tbody>
     </table>
+
+    <div class="modal" id="modal">
+        <p id="modal-texto"></p>
+        <button type="button" class="chip" id="modal-cancelar">Cancelar</button>
+        <button type="button" class="chip" id="modal-ok">Confirmar</button>
+    </div>
 
     <script src="/js/panel.js"></script>
 

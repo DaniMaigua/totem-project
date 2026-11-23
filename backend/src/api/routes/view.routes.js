@@ -4,7 +4,7 @@
 
 import { Router } from "express";
 import { requireLogin } from "../middlewares/auth.js";
-import { showDashboard, showProductForm, showProductUpdate, showUserForm } from "../controllers/view.controllers.js";
+import { showDashboard, showProductDetail, showProductForm, showProductUpdate, showUserForm } from "../controllers/view.controllers.js";
 
 const router = Router();
 
@@ -19,6 +19,10 @@ router.get("/usuarios/alta", requireLogin, showUserForm);
 ////////////////////////
 // GET alta de producto
 router.get("/productos/alta", requireLogin, showProductForm);
+
+////////////////////////
+// GET consulta de producto por id
+router.get("/productos/consulta", requireLogin, showProductDetail);
 
 ////////////////////////
 // GET modificacion de producto
