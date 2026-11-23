@@ -3,6 +3,7 @@
 //router es otro paquete de express
 
 import { Router } from "express"; // Router funciona como una "mini aplicacion de express"
+import { requireLogin } from "../middlewares/auth.js";
 import { validateId, validateProduct } from "../middlewares/validations.js";
 import { createProduct, getAllProducts, getProductById, modifyProduct, removeProduct } from "../controllers/product.controllers.js";
 
@@ -15,13 +16,14 @@ router.get("/", getAllProducts);
 router.get("/:id", validateId, getProductById);
 
 //POST create new product
-router.post("/", validateProduct, createProduct);
+//Los tres de escritura son del panel, los GET quedan libres para el totem
+router.post("/", requireLogin, validateProduct, createProduct);
 
 //PUT product
-router.put("/", validateProduct, modifyProduct);
+router.put("/", requireLogin, validateProduct, modifyProduct);
 
 //DELETE product
-router.delete("/:id", validateId, removeProduct);
+router.delete("/:id", requireLogin, validateId, removeProduct);
 
 //Exportamos todas estas rutas de producto
 export default router;
