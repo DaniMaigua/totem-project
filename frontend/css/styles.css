@@ -325,3 +325,81 @@ input {
     cursor: not-allowed;
     opacity: 0.5;
 }
+
+/* Ticket */
+
+.ticket {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ticket-body {
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    width: min(92vw, 420px);
+}
+
+.ticket-line,
+.ticket-row,
+.ticket-total {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.ticket-line span {
+    color: var(--text-soft);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ticket-line strong {
+    font-size: 0.9rem;
+}
+
+.ticket-items {
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.ticket-row span {
+    color: var(--text-soft);
+    font-size: 0.85rem;
+}
+
+.ticket-row strong {
+    font-size: 0.85rem;
+}
+
+.ticket-total {
+    border-top: 1px solid var(--border);
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.ticket-total span {
+    color: var(--text-soft);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.ticket-total strong {
+    font-size: 1.25rem;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
