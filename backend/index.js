@@ -5,7 +5,7 @@ import environments from "./src/api/config/environments.js";
 import { loggerUrl } from "./src/api/middlewares/logger.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 //importamos los endpoints de productos, usuarios y autenticacion
-import { productRoutes, userRoutes, authRoutes, viewRoutes } from "./src/api/routes/index.js";
+import { productRoutes, userRoutes, saleRoutes, authRoutes, viewRoutes } from "./src/api/routes/index.js";
 
 // config
 
@@ -46,7 +46,7 @@ app.use(session({
 // // Vistas
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
-// app.use("/api/sales", saleRoutes);
+app.use("/api/sales", saleRoutes);
 app.use("/", authRoutes);
 app.use("/", viewRoutes);
 
