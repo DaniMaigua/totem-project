@@ -36,17 +36,42 @@ if (formModificar) {
     });
 }
 
-// ELIMINAR PRODUCTO
-const botonesEliminar = document.querySelectorAll("[data-eliminar]");
+// ELIMINAR PRODUCTO, con modal de confirmacion
+const modal = document.getElementById("modal");
 
-botonesEliminar.forEach(boton => {
-    boton.addEventListener("click", async () => {
-        if (!confirm("Eliminar este producto?")) {
-            return;
-        }
+if (modal) {
+    const texto = document.getElementById("modal-texto");
+    const botonOk = document.getElementById("modal-ok");
+    const botonCancelar = document.getElementById("modal-cancelar");
+
+    let productoSeleccionado = "";
+
+    const abrirModal = (mensaje, conConfirmar) => {
+        texto.textContent = mensaje;
+        botonOk.hidden = !conConfirmar;
+        modal.classList.add("abierto");
+    };
+
+    const cerrarModal = () => {
+        modal.classList.remove("abierto");
+        productoSeleccionado = "";
+    };
+
+    document.querySelectorAll("[data-eliminar]").forEach(boton => {
+        boton.addEventListener("click", () => {
+            productoSeleccionado = boton.dataset.eliminar;
+            abrirModal("Eliminar este producto?", true);
+        });
+    });
+
+    botonCancelar.addEventListener("click", cerrarModal);
+
+    botonOk.addEventListener("click", async () => {
+        const id = productoSeleccionado;
+        cerrarModal();
 
         try {
-            const response = await fetch(`/api/products/${boton.dataset.eliminar}`, {
+            const response = await fetch(`/api/products/${id}`, {
                 method: "DELETE"
             });
 
@@ -56,10 +81,10 @@ botonesEliminar.forEach(boton => {
             }
 
             const data = await response.json();
-            alert(data.message);
+            abrirModal(data.message, false);
         } catch (error) {
             console.log("Error eliminando el producto: ", error);
-            alert("Error de conexion con el servidor");
+            abrirModal("Error de conexion con el servidor", false);
         }
     });
-});
+}
