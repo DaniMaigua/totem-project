@@ -15,3 +15,14 @@ export const showDashboard = (req, res) => {
 export const showUserForm = (req, res) => {
     res.render("userForm");
 }
+
+/////////////////////////////
+// Formulario de producto
+export const showProductForm = (req, res) => {
+    res.render("productForm",
+        {
+            titulo: "Alta producto",
+            producto: {id: null, name: "", image: "", category: "", price:"", active: 1}
+        }
+    );
+}
