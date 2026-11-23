@@ -116,6 +116,19 @@ button:hover {
     filter: brightness(0.85);
 }
 
+/* El boton que no envia el form se ve distinto al principal */
+
+button.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+}
+
+button.secondary:hover {
+    color: var(--text);
+    filter: none;
+}
+
 /* Header */
 
 .header {
