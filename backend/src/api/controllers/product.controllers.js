@@ -6,7 +6,7 @@ export const getAllProducts = async (req, res) => {
     try{
         const [rows] = await ProductModels.selectAllProducts();
 
-        if (rows.lenght ===0){
+        if (rows.length ===0){
             return res.status(404).json({
                 message: "No se encontraron productos"
             });
@@ -14,7 +14,7 @@ export const getAllProducts = async (req, res) => {
 
         res.status(200).json({
             payload: rows,
-            total: rows.length // Opcional, metadata util para el frontend
+            total: rows.lenght // Opcional, metadata util para el frontend
         });
 
         
@@ -40,7 +40,6 @@ export const getProductById = async(req,res) => {
                 message: `No se encontro producto con id ${req.id}`
             });
         }
-         // console.log(rows); ESTA OK?? JUANO? 
         res.status(200).json({
             payload: rows
         })
@@ -92,7 +91,7 @@ export const modifyProduct = async (req, res) => {
         console.log(result);
 
         // Verificamos la actualizacion
-        if (result.changedRows === 0) {
+        if (result.affectedRows === 0) {
             return res.status(404).json({
                 message: "No se actualizo el producto"
             })
