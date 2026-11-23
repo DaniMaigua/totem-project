@@ -123,8 +123,16 @@ export const removeProduct = async (req, res) => {
     // Filtro ids no validos en el middleware validateId
     try {
 
-        await ProductModels.deleteProduct(req.id);
-    
+        const [result] = await ProductModels.deleteProduct(req.id);
+
+        // Mismo control que en modifyProduct: sin esto un id inexistente
+        // responderia 200 como si hubiera borrado algo
+        if (result.affectedRows === 0) {
+            return res.status(404).json({
+                message: `No se encontro producto con id ${req.id}`
+            });
+        }
+
         res.status(200).json({
             message: `Producto con id ${req.id} eliminado exitosamente`
         });
