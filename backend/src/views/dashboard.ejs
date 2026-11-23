@@ -1,7 +1,45 @@
 <%- include("partials/head", { title: "Panel" }) %>
 <%- include("partials/header") %>
 
-    <h1>Panel de administracion</h1>
-    <p>Bienvenido, <%= user.name %></p>
+    <% if (typeof error !== "undefined" && error) { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach(producto => { %>
+                <tr>
+                    <td>
+                        <img class="thumb" src="<%= producto.image %>" alt="<%= producto.name %>">
+                    </td>
+                    <td><%= producto.name %></td>
+                    <td><%= producto.category %></td>
+                    <td>$ <%= producto.price %></td>
+                    <td>
+                        <span class="chip <%= producto.active ? "on" : "" %>">
+                            <%= producto.active ? "Activo" : "Inactivo" %>
+                        </span>
+                    </td>
+                    <td class="actions">
+                        <a class="chip" href="/productos/modificar/<%= producto.id %>">Editar</a>
+                        <!-- El fetch de panel.js pide confirmacion antes de borrar -->
+                        <button type="button" class="chip" data-eliminar="<%= producto.id %>">Eliminar</button>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <script src="/js/panel.js"></script>
 
 <%- include("partials/footer") %>

@@ -12,11 +12,14 @@
             <p class="success"><%= success %></p>
         <% } %>
 
-        <form method="POST" action="<%= accion %>" class="form">
-
-            <% if (producto.id) { %>
+        <% if (producto.id) { %>
+            <!-- La modificacion manda PUT, y el PUT lo hace panel.js -->
+            <form class="form" id="form-modificar">
+                <p id="mensaje"></p>
                 <input type="hidden" name="id" value="<%= producto.id %>">
-            <% } %>
+        <% } else { %>
+            <form class="form" method="POST" action="/api/products">
+        <% } %>
 
             <label>Nombre
                 <input type="text" name="name" 
@@ -66,5 +69,9 @@
             <button type="submit"><%= producto.id ? "Guardar cambios" : "Crear producto" %></button>
         </form>
     </div>
+
+    <% if (producto.id) { %>
+        <script src="/js/panel.js"></script>
+    <% } %>
 
 <%- include("partials/footer") %>

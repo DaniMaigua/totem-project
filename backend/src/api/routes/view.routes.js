@@ -4,7 +4,7 @@
 
 import { Router } from "express";
 import { requireLogin } from "../middlewares/auth.js";
-import { showDashboard, showProductForm, showUserForm } from "../controllers/view.controllers.js";
+import { showDashboard, showProductForm, showProductUpdate, showUserForm } from "../controllers/view.controllers.js";
 
 const router = Router();
 
@@ -17,8 +17,12 @@ router.get("/dashboard", requireLogin, showDashboard);
 router.get("/usuarios/alta", requireLogin, showUserForm);
 
 ////////////////////////
-// GET alta de productos
+// GET alta de producto
 router.get("/productos/alta", requireLogin, showProductForm);
+
+////////////////////////
+// GET modificacion de producto
+router.get("/productos/modificar/:id", requireLogin, showProductUpdate);
 
 // Exportamos las rutas de vistas
 export default router;
