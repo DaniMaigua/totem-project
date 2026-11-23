@@ -5,6 +5,8 @@ import { selectUserByEmail, insertNewUser } from "../models/user.models.js";
 
 // Crear usuario administrador
 // La contraseña se guarda hasheada, nunca en texto plano
+// El form de alta apunta aca, por eso la respuesta es la vista
+// con el mensaje y no un JSON
 export const createUser = async (req, res) => {
     try {
         const { name, email, password } = req.body;
@@ -13,8 +15,8 @@ export const createUser = async (req, res) => {
         const [existentes] = await selectUserByEmail(email);
 
         if (existentes.length > 0) {
-            return res.status(409).json({
-                message: "Ya existe un usuario con ese email"
+            return res.status(409).render("userForm", {
+                error: "Ya existe un usuario con ese email"
             });
         }
 
@@ -23,14 +25,13 @@ export const createUser = async (req, res) => {
 
         const [result] = await insertNewUser(name, email, hash);
 
-        res.status(201).json({
-            message: "Usuario creado exitosamente",
-            userId: result.insertId
+        res.status(201).render("userForm", {
+            success: `Usuario ${name} creado con el id ${result.insertId}`
         });
     } catch (error) {
         console.log("Error creando usuario: ", error);
-        res.status(500).json({
-            message: "Error interno al crear usuario"
+        res.status(500).render("userForm", {
+            error: "Error interno al crear usuario"
         });
     }
 }

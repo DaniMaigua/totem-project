@@ -12,7 +12,7 @@
             <p class="success"><%= success %></p>
         <% } %>
 
-        <form method="POST" action="/usuarios/alta" class="form">
+        <form method="POST" action="/api/users" class="form">
             <label>Nombre
                 <input type="text" name="name" required>
             </label>
@@ -20,7 +20,7 @@
                 <input type="email" name="email" required>
             </label>
             <label>Contrasena
-                <input type="password" name="password" required>
+                <input type="password" name="password" minlength="6" required>
             </label>
             <button type="submit">Crear usuario</button>
         </form>
