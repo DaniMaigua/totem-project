@@ -14,7 +14,7 @@ export const getAllProducts = async (req, res) => {
 
         res.status(200).json({
             payload: rows,
-            total: rows.lenght // Opcional, metadata util para el frontend
+            total: rows.length // Opcional, metadata util para el frontend
         });
 
         
