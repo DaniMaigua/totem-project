@@ -70,6 +70,7 @@ export const createProduct = async(req,res) => {
         //render: responde con una vista, en vez de json
         res.status(201).render("productForm", {
             titulo: "Alta de producto",
+            accion: "/api/products",
             producto: { id: null, name: "", image: "", category: "", price: "", active: 1 },
             success: `Producto creado con el id ${result.insertId}`
         });
@@ -80,6 +81,7 @@ export const createProduct = async(req,res) => {
         //500 si fallo conexion a base de datos
         res.status(500).render("productForm", {
             titulo: "Alta de producto",
+            accion: "/api/products",
             producto: cargado,
             error: "Error interno al crear el producto"
         });

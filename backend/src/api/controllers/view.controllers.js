@@ -22,6 +22,7 @@ export const showProductForm = (req, res) => {
     res.render("productForm",
         {
             titulo: "Alta producto",
+            accion: "/api/products",
             producto: {id: null, name: "", image: "", category: "", price:"", active: 1}
         }
     );
