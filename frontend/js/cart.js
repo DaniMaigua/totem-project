@@ -32,3 +32,8 @@ function updateBadge() {
     const total = getCarrito().reduce((suma, item) => suma + item.cantidad, 0);
     document.getElementById("cartBadge").textContent = total;
 }
+
+// vacia el carrito despues de una venta registrada
+function clearCarrito() {
+    localStorage.removeItem(CARRITO_KEY);
+}

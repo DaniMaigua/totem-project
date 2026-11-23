@@ -8,6 +8,7 @@ if (!nombre) {
 
 const lista = document.getElementById("cartList");
 const total = document.getElementById("cartTotal");
+const mensaje = document.getElementById("cartMessage");
 const btnFinalizar = document.getElementById("checkoutBtn");
 
 function render() {
@@ -83,12 +84,29 @@ function setCantidad(id, cantidad) {
     render();
 }
 
-btnFinalizar.addEventListener("click", () => {
-    if (getCarrito().length === 0) {
+btnFinalizar.addEventListener("click", async () => {
+    const carrito = getCarrito();
+
+    if (carrito.length === 0) {
         return;
     }
 
-    window.location.href = "ticket.html";
+    btnFinalizar.disabled = true;
+    btnFinalizar.textContent = "Registrando venta...";
+
+    try {
+        // el backend confirma precios y devuelve la venta guardada
+        const venta = await createSale(nombre, carrito);
+
+        clearCarrito();
+        window.location.href = `ticket.html?venta=${venta.id}`;
+    } catch (error) {
+        console.log("Error al finalizar la compra: ", error);
+
+        btnFinalizar.disabled = false;
+        btnFinalizar.textContent = "Finalizar compra";
+        mensaje.textContent = error.message;
+    }
 });
 
 updateBadge();
