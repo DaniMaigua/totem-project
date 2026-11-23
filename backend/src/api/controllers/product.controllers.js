@@ -55,25 +55,33 @@ export const getProductById = async(req,res) => {
 }
 
 //CREAR PRODUCTO
+//El form de alta apunta aca, como el de usuario apunta a /api/users:
+//la respuesta es la vista otra vez con el mensaje, no un JSON
 export const createProduct = async(req,res) => {
 
-    try{
+    //lee los campos del formulario productos
+    const {category, image, name, price } = req.body;
+    //Guardar producto cargado, para no perderlo si falla
+    const cargado = { id: null, name, image, category, price, active: 1 };
 
-        const {category,image,name,price} = req.body;
+    try{
         const [result] = await ProductModels.insertNewProduct(name,image,category,price);
 
-        console.log(result);
+        //render: responde con una vista, en vez de json
+        res.status(201).render("productForm", {
+            titulo: "Alta de producto",
+            producto: { id: null, name: "", image: "", category: "", price: "", active: 1 },
+            success: `Producto creado con el id ${result.insertId}`
+        });
 
-        res.status(201).json({
-            message: "Producto creado exitosamente",
-            productId: result.insertId
-        })
     }catch (error){
-        console.log("Error obteniendo productos: ", error);
+        console.log("Error creando producto: ", error);
 
         //500 si fallo conexion a base de datos
-        res.status(500).json({
-            message: "Error interno al obtener productos"
+        res.status(500).render("productForm", {
+            titulo: "Alta de producto",
+            producto: cargado,
+            error: "Error interno al crear el producto"
         });
     }
 }
