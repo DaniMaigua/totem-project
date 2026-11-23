@@ -224,8 +224,50 @@ button:hover {
 }
 
 .actions {
-    align-items: center;
-    display: flex;
-    gap: 8px;
     white-space: nowrap;
+}
+
+.detail-img {
+    max-height: 180px;
+    object-fit: contain;
+    width: 100%;
+}
+
+/* Modal de confirmacion */
+
+.modal {
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: none;
+    left: 50%;
+    padding: 24px;
+    position: fixed;
+    text-align: center;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 340px);
+    z-index: 10;
+}
+
+.modal.abierto {
+    display: block;
+}
+
+.modal p {
+    margin-bottom: 16px;
+}
+
+/* .chip declara display, y eso le gana al hidden del navegador */
+
+.modal [hidden] {
+    display: none;
+}
+
+.data {
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.chip + .chip {
+    margin-left: 8px;
 }
