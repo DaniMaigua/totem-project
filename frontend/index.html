@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anteiku - autoservicio</title>
+    <title>Anteiku - Autoservicio</title>
     <link rel="icon" href="img/favicon.png">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="js/index.js"></script>
-    <script src="js/theme.js"></script>
+    <script defer src="js/index.js"></script>
 </head>
 <body>
-    <header class="topbar">
+    <header class="header">
         <div class="brand">
             <img src="img/logo-mono.png" alt="Anteiku">
             <div>
@@ -18,24 +17,21 @@
                 <span class="students">Juan Cruz Reynoso - Daniela Maigua</span>
             </div>
         </div>
-        <nav class="navbar">
-            <button type="button" class="btn-ghost" onclick="toggleTheme()">Tema</button>
-            <a href="http://localhost:3000/login" class="btn-ghost">Admin</a>
+        <nav class="menu">
+            <a href="http://localhost:3000/login">Admin</a>
         </nav>
     </header>
 
-    <main class="welcome">
-        <img src="img/logo-color.png" alt="Anteiku" class="welcome-logo">
-        <h2>Bienvenido a <span id="heroWord">Anteiku</span></h2>
-        <!-- //&amp = ampersand -->
+    <main class="page welcome">
+        <img src="img/logo-color.png" alt="Anteiku">
+        <h2>Bienvenido a Anteiku</h2>
         <p>Cafeteria &amp; Store - autoservicio</p>
-        <form id="welcomeForm" class="welcome-form">
+
+        <form id="welcomeForm" class="form">
             <label for="clientName">Ingresa tu nombre para comenzar</label>
-            <input type="text" id="clientName" autocomplete="off" required minlength="2" placeholder="Tu nombre">
-            <button type="submit" class="btn btn-primary">Continuar</button>
+            <input type="text" id="clientName" placeholder="Tu nombre" minlength="2" required>
+            <button type="submit" class="btn">Continuar</button>
         </form>
     </main>
-
-    <script src="js/glitch.js"></script>
 </body>
 </html>
