@@ -313,6 +313,7 @@ input {
 .subtotal {
     min-width: 90px;
     text-align: right;
+    white-space: nowrap;
 }
 
 .empty {
@@ -401,11 +402,14 @@ input {
 
 .ticket-row span {
     color: var(--text-soft);
+    flex: 1;
     font-size: 0.85rem;
+    min-width: 0;
 }
 
 .ticket-row strong {
     font-size: 0.85rem;
+    white-space: nowrap;
 }
 
 .ticket-total {
@@ -423,6 +427,7 @@ input {
 
 .ticket-total strong {
     font-size: 1.25rem;
+    white-space: nowrap;
 }
 
 .actions {
