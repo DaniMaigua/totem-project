@@ -52,9 +52,9 @@ npx serve -l 5500
 Abre en `http://localhost:5500`. La direccion del backend esta fija en
 `frontend/js/config.js`, que es la constante `API_URL`.
 
-El archivo `serve.json` desactiva los "clean urls" que trae `serve` por defecto,
-para que `/ticket.html?venta=3` no se reescriba y el ticket pueda leer siempre
-el id de la venta.
+Un detalle de `serve`: por defecto reescribe las direcciones y saca el `.html`,
+pero en ese salto **pierde la query string**. Por eso el carrito manda al ticket
+como `ticket?venta=3` y no como `ticket.html?venta=3`.
 
 ## Accesos
 

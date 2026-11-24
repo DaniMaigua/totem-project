@@ -100,11 +100,12 @@ btnFinalizar.addEventListener("click", async () => {
 
         clearCarrito();
 
-        // dejamos el id guardado ademas de ponerlo en la url:
-        // si el servidor reescribe la direccion, el ticket sigue pudiendo leerlo
+        // el carrito lo guarda y ademas lo pone en la url.
+        // sin ".html" a proposito: serve reescribe /ticket.html?venta=3 y
+        // en ese salto pierde el query, asi que el id solo llega bien asi
         localStorage.setItem("anteiku_venta", venta.id);
 
-        window.location.href = `ticket.html?venta=${venta.id}`;
+        window.location.href = `ticket?venta=${venta.id}`;
     } catch (error) {
         console.log("Error al finalizar la compra: ", error);
 
