@@ -99,6 +99,11 @@ btnFinalizar.addEventListener("click", async () => {
         const venta = await createSale(nombre, carrito);
 
         clearCarrito();
+
+        // dejamos el id guardado ademas de ponerlo en la url:
+        // si el servidor reescribe la direccion, el ticket sigue pudiendo leerlo
+        localStorage.setItem("anteiku_venta", venta.id);
+
         window.location.href = `ticket.html?venta=${venta.id}`;
     } catch (error) {
         console.log("Error al finalizar la compra: ", error);

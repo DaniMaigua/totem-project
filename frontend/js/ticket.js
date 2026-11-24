@@ -6,9 +6,10 @@ if (!nombre) {
     window.location.href = "index.html";
 }
 
-// el id llega por query string porque el carrito lo pone al navegar
+// el id llega por query string porque el carrito lo pone al navegar.
+// si la query se pierde por el camino usamos el ultimo id que dejo el carrito
 const params = new URLSearchParams(window.location.search);
-const ventaId = params.get("venta");
+const ventaId = params.get("venta") || localStorage.getItem("anteiku_venta");
 
 if (!ventaId) {
     window.location.href = "carrito.html";
