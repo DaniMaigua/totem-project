@@ -71,6 +71,32 @@ a:hover {
     gap: 16px;
 }
 
+.menu a {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+}
+
+/* La pastillita del contador, misma forma que los chips del panel */
+
+.chip {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-soft);
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    white-space: nowrap;
+}
+
+.chip.count {
+    background: var(--brand);
+    border-color: var(--brand);
+    color: #ffffff;
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+}
+
 /* Pagina */
 
 .page {
